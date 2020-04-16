@@ -436,6 +436,7 @@ end subroutine QC_setMetricParameters3DQC
 !> @param outspace  output space
 !
 !> @date 06/13/18 SS 1.0 original
+!> @date 04/16/20 SS 1.1 fixed 'c' to 'd' conversion routine
 !--------------------------------------------------------------------------
 recursive subroutine QC_TransSpace2DQC(cell, t, d, inspace, outspace)
 !DEC$ ATTRIBUTES DLLEXPORT ::QC_TransSpace2DQC
@@ -483,7 +484,7 @@ if (inspace.eq.'d') then
  if (inspace.eq.'c') then
 ! Cartesian to direct (post-multiplication)
   if (outspace.eq.'d') then
-   d = matmul(cell%rsm,t)
+   d = matmul(t,cell%rsm)
    return
   end if
 ! Cartesian to reciprocal (post-multiplication)
@@ -510,6 +511,7 @@ end subroutine QC_TransSpace2DQC
 !> @param outspace  output space
 !
 !> @date 06/26/18 SS 1.0 original
+!> @date 04/16/20 SS 1.1 fixed 'c' to 'd' conversion routine
 !--------------------------------------------------------------------------
 recursive subroutine QC_TransSpace3DQC(cell, t, d, inspace, outspace)
 !DEC$ ATTRIBUTES DLLEXPORT ::QC_TransSpace3DQC
@@ -557,7 +559,7 @@ if (inspace.eq.'d') then
  if (inspace.eq.'c') then
 ! Cartesian to direct (post-multiplication)
   if (outspace.eq.'d') then
-   d = matmul(cell%rsm,t)
+   d = matmul(t,cell%rsm)
    return
   end if
 ! Cartesian to reciprocal (post-multiplication)
